@@ -10,7 +10,7 @@
                 "-Wall",
                 "-Wextra",
                 "-Werror",
-                "${file}",
+                "*c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
