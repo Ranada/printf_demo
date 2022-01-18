@@ -10,42 +10,57 @@ int my_printf(const char* format, ...)
     char* string_value;
     int int_value;
     double double_value;
-    int done = 0;
+    int character_count = 0;
+    //int done = 0;
 
     va_start(args_pointer, format); // Looks at the first REQUIRED argument then finds and point to the first OPTIONAL argument
 
     for (pointer_value = format; *pointer_value; pointer_value++)
     {
-        int character_count = 0;
-        if (*pointer_value != '%')
+        if(*pointer_value != '\0')
+        {
+            if (*pointer_value != '%')
         {
             putchar(*pointer_value);
+            character_count++;
             continue;
         }
         switch (*++pointer_value)
         {
+            case 'c':
+                int_value = va_arg(args_pointer, int);
+                putchar(int_value);
+                character_count++;
+                continue;
             case 'd':
                 int_value = va_arg(args_pointer, int);
                 printf("%d", int_value);
-                break;
+                character_count++;
+                continue;
             case 'f':
                 double_value = va_arg(args_pointer, double);
                 printf("%f", double_value);
-                break;
+                character_count++;
+                continue;
             case 's':
                 for (string_value = va_arg(args_pointer, char*);  *string_value; string_value++)
+                {
                     putchar(*string_value);
-                break;
+                    character_count++;
+                }
+                continue;
             default:
                 putchar(*pointer_value);
-                break;
+                character_count++;
+                continue;
         }
         return character_count;
+        }
     }
     va_end(args_pointer); //Clean up argument list
 
-    
-    return done;
+    return character_count;
+    //return done;
 }
 
 // int main()
