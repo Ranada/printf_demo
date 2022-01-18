@@ -1,2 +1,2 @@
 all:
-	gcc -Wall -Wextra -Werror -o start_printf_demo printf_demo.c
+	gcc -Wall -Wextra -Werror *.c -o run_test

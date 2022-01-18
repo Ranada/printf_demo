@@ -16,6 +16,7 @@ int my_printf(const char* format, ...)
 
     for (pointer_value = format; *pointer_value; pointer_value++)
     {
+        int character_count = 0;
         if (*pointer_value != '%')
         {
             putchar(*pointer_value);
@@ -39,9 +40,11 @@ int my_printf(const char* format, ...)
                 putchar(*pointer_value);
                 break;
         }
+        return character_count;
     }
     va_end(args_pointer); //Clean up argument list
 
+    
     return done;
 }
 
