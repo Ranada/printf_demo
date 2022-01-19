@@ -1,21 +1,11 @@
 #include "printf_demo.h"
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 int my_printf(const char* format, ...)
 {
     va_list args_pointer; // Points to each agrument in the list
-    const char* pointer_value;
-    char* string_value;
-    int int_value;
-    double double_value;
-    int character_count = 0;
-    //int done = 0;
-
     va_start(args_pointer, format); // Looks at the first REQUIRED argument then finds and point to the first OPTIONAL argument
+    
+    character_count = 0;
 
     for (pointer_value = format; *pointer_value; pointer_value++)
     {
@@ -49,26 +39,18 @@ int my_printf(const char* format, ...)
 
                     if (string_value == NULL)
                     {
-                        string_value = "(null)";
-                        int index;
-                        int length = strlen(string_value);
+                        char* null_string_value = "(null)";
+                        int length = strlen(null_string_value);
+                        int result_count = convert_string(null_string_value, length, character_count);
 
-                        for (index = 0; index < length; index++)
-                        {
-                            putchar(string_value[index]);
-                            character_count++;
-                        }
+                        character_count = result_count;
                     }
                     else
                     {
-                        int index;
                         int length = strlen(string_value);
+                        int result_count = convert_string(string_value, length, character_count);
 
-                        for (index = 0;  index < length; index++)
-                        {
-                        putchar(string_value[index]);
-                        character_count++;
-                        }
+                        character_count = result_count;
                     }
                     break;
                 default:
@@ -83,7 +65,6 @@ int my_printf(const char* format, ...)
     va_end(args_pointer); //Clean up argument list
 
     return character_count;
-    //return done;
 }
 
 // int main()
