@@ -18,5 +18,7 @@ int character_count;
 /* Function Prototypes */
 int my_printf(const char* format, ...);
 int convert_string(char* string_value, int length, int character_count);
+int no_of_digits(int num);
+char* integer_to_ascii(int num);
 
 #endif //PRINTF_DEMO_H
