@@ -61,15 +61,12 @@ int my_printf(const char* format, ...)
                     }
                     else
                     {
-                        int i;
-                        char* string_result;
-                        string_result = malloc(sizeof(char) * 100);
-                        strcpy(string_result, string_value);
-                        int length = strlen(string_result);
+                        int index;
+                        int length = strlen(string_value);
 
-                        for (i = 0;  i < length; i++)
+                        for (index = 0;  index < length; index++)
                         {
-                        putchar(string_result[i]);
+                        putchar(string_value[index]);
                         character_count++;
                         }
                     }
