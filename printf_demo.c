@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int my_printf(const char* format, ...)
 {
@@ -43,10 +45,33 @@ int my_printf(const char* format, ...)
                     character_count++;
                     break;
                 case 's':
-                    for (string_value = va_arg(args_pointer, char*);  *string_value; string_value++)
+                    string_value = va_arg(args_pointer, char*);
+
+                    if (string_value == NULL)
                     {
-                        putchar(*string_value);
+                        string_value = "(null)";
+                        int index;
+                        int length = strlen(string_value);
+
+                        for (index = 0; index < length; index++)
+                        {
+                            putchar(string_value[index]);
+                            character_count++;
+                        }
+                    }
+                    else
+                    {
+                        int i;
+                        char* string_result;
+                        string_result = malloc(sizeof(char) * 100);
+                        strcpy(string_result, string_value);
+                        int length = strlen(string_result);
+
+                        for (i = 0;  i < length; i++)
+                        {
+                        putchar(string_result[i]);
                         character_count++;
+                        }
                     }
                     break;
                 default:
