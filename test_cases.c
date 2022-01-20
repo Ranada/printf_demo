@@ -105,7 +105,7 @@ void test_20_21() {
 }
 
 
-#define PRINTF_PARAM_22_23 "%x!\n", 14
+#define PRINTF_PARAM_22_23 "%p!\n", &a
 void test_22_23() {
   int a = 3;
   printf("<#22 - 23>\n");

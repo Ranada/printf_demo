@@ -42,6 +42,31 @@ void count_digits(int number, int* digit_count)
     }
 }
 
+void convert_to_hexadecimal(int number, int digit_count, int base, char* integer_to_string)
+{
+    char digit_to_char;
+    
+    while (number > 0)
+    {
+    int remainder = number % base;
+
+    if (remainder < 10)
+    {
+        digit_to_char = remainder + 48;
+    }
+    else
+    {
+        digit_to_char = remainder + 55;
+    }
+
+    number = number / base;
+
+    integer_to_string[digit_count - 1] = digit_to_char;
+
+    digit_count--;
+    }
+}
+
 
 void convert_integer_to_ascii(int number, int digit_count, char* integer_to_string, int base)
 {    
@@ -58,7 +83,12 @@ void convert_integer_to_ascii(int number, int digit_count, char* integer_to_stri
         integer_to_string[digit_count - 1] = '0';
     }
 
-    if (number > 0)
+    if (number > 0 && base == HEXADECIMAL)
+    {
+        convert_to_hexadecimal(number, digit_count, base, integer_to_string);
+    }
+
+    if (number > 0 && base != HEXADECIMAL)
     {
         while (number > 0)
         {        

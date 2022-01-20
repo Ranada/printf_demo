@@ -8,8 +8,10 @@ int my_printf(const char* format, ...)
     character_count = malloc(sizeof(int));
     char_value = malloc(sizeof(int));
     signed_decimal_value = malloc(sizeof(int));
+    unsigned_hexadecimal_value = malloc(sizeof(int));
     unsigned_decimal_value = malloc(sizeof(int));
     unsigned_octal_value = malloc(sizeof(int));
+    pointer_argument_value = malloc(sizeof(int));
 
     for (pointer_value = format; *pointer_value; pointer_value++)
     {
@@ -69,6 +71,23 @@ int my_printf(const char* format, ...)
                     *character_count = *character_count + *digit_count;
                     
                     break;
+                // case 'p':
+                //     pointer_argument_value = va_arg(args_pointer, int*);
+                    
+                    // digit_count = malloc(sizeof(int));
+                    // integer_to_string = malloc(sizeof(char) * (*digit_count) + 1);
+                    // base = HEXADECIMAL;
+                    
+                    // count_digits(*pointer_argument_value, digit_count);
+                    // convert_integer_to_ascii(*pointer_argument_value, *digit_count, integer_to_string, base);
+                    
+                    // write(1, pointer_argument_value, HEXADECIMAL +1);
+
+                    // *character_count = *digit_count;
+
+                    // printf("%p\n", pointer_argument_value);
+                    
+                    // break;
                 case 's':
                     string_value = va_arg(args_pointer, char*);
 
@@ -102,6 +121,22 @@ int my_printf(const char* format, ...)
                     write(1, integer_to_string, *digit_count);
 
                     *character_count = *character_count + *digit_count;
+                    
+                    break;
+                case 'x':
+                    *unsigned_hexadecimal_value = va_arg(args_pointer, int);
+                    
+                    digit_count = malloc(sizeof(int));
+                    integer_to_string = malloc(sizeof(char) * (*digit_count) + 1);
+                    base = HEXADECIMAL;
+                    
+                    count_digits(*unsigned_hexadecimal_value, digit_count);
+                    convert_integer_to_ascii(*unsigned_hexadecimal_value, *digit_count, integer_to_string, base);
+                    write(1, integer_to_string, *digit_count + 1);
+
+                    int count_characters = strlen(integer_to_string) + 1;
+
+                    *character_count = count_characters;
                     
                     break;
                 default:
