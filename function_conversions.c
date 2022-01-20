@@ -44,16 +44,16 @@ void count_digits(int number, int* digit_count)
 
 
 void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_string)
-{
-    if (int_value < 0)
+{    
+    integer_to_string[digit_count] = '\0'; // Start building string by setting null terminator
+    
+    if (int_value < 0) // Convert negative value to positive
     {
-        int_value = -1 * (int_value);
-        (digit_count)++;
+        int_value = convert_to_positive(int_value);
+        integer_to_string[0] = '-';
     }
 
-    integer_to_string[digit_count] = '\0';
-
-    if (int_value == 0)
+    if (int_value == 0) // Create string if number is 0
     {
         integer_to_string[digit_count - 1] = '0';
     }
@@ -66,11 +66,10 @@ void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_s
         
         int_value = int_value / 10;
 
-        integer_to_string[(digit_count) - 1] = digit_to_char;
+        integer_to_string[digit_count - 1] = digit_to_char;
 
-        (digit_count)--;
+        digit_count--;
         }
-        write(1, integer_to_string, digit_count);
     }
 
 
