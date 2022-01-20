@@ -13,27 +13,29 @@ int my_printf(const char* format, ...)
         {
             if (*pointer_value != '%')
             {
-                putchar(*pointer_value);
+                //putchar(*pointer_value);
+                write(1, pointer_value, 1);
                 character_count++;
                 continue;
             }
             switch (*++pointer_value)
             {
                 case 'c':
-                    int_value = va_arg(args_pointer, int);
-                    putchar(int_value);
+                    char_value = va_arg(args_pointer, int);
+                    //putchar(int_value);
+                    write(1, &char_value, 1);
                     character_count++;
                     break;
                 case 'd':
                     int_value = va_arg(args_pointer, int);
                     
-                    int number_count = no_of_digits(int_value);
+                    int digit_count = num_of_digits(int_value);
 
                     char* integer_to_string = integer_to_ascii(int_value);
-                    write(1, integer_to_string, number_count);
+                    write(1, integer_to_string, digit_count);
 
                     
-                    character_count = character_count + number_count;
+                    character_count = character_count + digit_count;
                     break;
                 case 'f':
                     double_value = va_arg(args_pointer, double);
@@ -60,7 +62,8 @@ int my_printf(const char* format, ...)
                     }
                     break;
                 default:
-                    putchar(*pointer_value);
+                    //putchar(*pointer_value);
+                    write(1, pointer_value, 1);
                     character_count++;
                     break;
                     
