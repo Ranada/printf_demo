@@ -43,28 +43,28 @@ void count_digits(int number, int* digit_count)
 }
 
 
-void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_string, int base)
+void convert_integer_to_ascii(int number, int digit_count, char* integer_to_string, int base)
 {    
     integer_to_string[digit_count] = '\0'; // Start building string by setting null terminator
     
-    if (int_value < 0) // Convert negative value to positive
+    if (number < 0) // Convert negative value to positive
     {
-        int_value = convert_to_positive(int_value);
+        number = convert_to_positive(number);
         integer_to_string[0] = '-';
     }
 
-    if (int_value == 0) // Create string if number is 0
+    if (number == 0) // Create string if number is 0
     {
         integer_to_string[digit_count - 1] = '0';
     }
 
-    if (int_value > 0)
+    if (number > 0)
     {
-        while (int_value > 0)
+        while (number > 0)
         {        
-        char digit_to_char = (int_value) % base + '0';
+        char digit_to_char = (number) % base + '0';
         
-        int_value = int_value / base;
+        number = number / base;
 
         integer_to_string[digit_count - 1] = digit_to_char;
 

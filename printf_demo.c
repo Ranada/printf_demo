@@ -7,7 +7,7 @@ int my_printf(const char* format, ...)
     
     character_count = malloc(sizeof(int));
     char_value = malloc(sizeof(int));
-    int_value = malloc(sizeof(int));
+    signed_decimal_value = malloc(sizeof(int));
     octal_value = malloc(sizeof(int));
     //*character_count = 0;
 
@@ -34,7 +34,7 @@ int my_printf(const char* format, ...)
                     
                     break;
                 case 'd':
-                    *int_value = va_arg(args_pointer, int);
+                    *signed_decimal_value = va_arg(args_pointer, int);
                     
                     // int* digit_count; 
                     // char* integer_to_string;
@@ -43,8 +43,8 @@ int my_printf(const char* format, ...)
                     integer_to_string = malloc(sizeof(char) * (*digit_count) + 1);
                     base = DECIMAL;
                     
-                    count_digits(*int_value, digit_count);
-                    convert_integer_to_ascii(*int_value, *digit_count, integer_to_string, base);
+                    count_digits(*signed_decimal_value, digit_count);
+                    convert_integer_to_ascii(*signed_decimal_value, *digit_count, integer_to_string, base);
                     write(1, integer_to_string, *digit_count);
 
                     *character_count = *character_count + *digit_count;
