@@ -11,61 +11,66 @@ int convert_string(char* string_value, int length, int character_count)
     return character_count;
 }
 
-void convert_to_positive(int* num)
+int convert_to_positive(int negative_number)
 {
-    *num = -1 * (*num);
+    int converted_to_postive;
+    converted_to_postive = -1 * negative_number;
+
+    return converted_to_postive;
 }
 
-void num_of_digits(int* num, int* digit_count)
+void count_digits(int number, int* digit_count)
 {
-    if (*num == 0)
+    if (number == 0)
     {
         (*digit_count)++;
     }
 
-    if (*num < 0)
+    if (number < 0)
     {
         (*digit_count)++;
-        convert_to_positive(num);
+        number = convert_to_positive(number);
     }
     
-    if (*num > 0)
+    if (number > 0)
     {
-        while(*num > 0)
+        while(number > 0)
         {
         (*digit_count)++;
-        *num = *num / 10;
+        number = number / 10;
         }
     }
 }
 
 
-void convert_integer_to_ascii(int* int_value, int* digit_count, char* integer_to_string)
+void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_string)
 {
-    if (*int_value < 0)
+    if (int_value < 0)
     {
-        *int_value = -1 * (*int_value);
-        (*digit_count)++;
+        int_value = -1 * (int_value);
+        (digit_count)++;
     }
 
-    num_of_digits(int_value, digit_count);   
-    //string = malloc(sizeof(char)*(digit_count + 1));
+    integer_to_string[digit_count] = '\0';
 
-    integer_to_string[*digit_count] = '\0';
-
-    if (*int_value == 0)
+    if (int_value == 0)
     {
-        integer_to_string[*digit_count - 1] = '0';
+        integer_to_string[digit_count - 1] = '0';
     }
 
-    else
+    if (int_value > 0)
     {
-        while (*int_value > 0)
-        {
-        integer_to_string[*digit_count - 1] = *int_value % 10 + '0';
-        *int_value = *int_value / 10;
-        (*digit_count)--;
+        while (int_value > 0)
+        {        
+        char digit_to_char = (int_value) % 10 + '0';
+        
+        int_value = int_value / 10;
+
+        integer_to_string[(digit_count) - 1] = digit_to_char;
+
+        (digit_count)--;
         }
+        write(1, integer_to_string, digit_count);
     }
 
 

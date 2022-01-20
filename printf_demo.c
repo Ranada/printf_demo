@@ -8,7 +8,7 @@ int my_printf(const char* format, ...)
     character_count = malloc(sizeof(int));
     char_value = malloc(sizeof(int));
     int_value = malloc(sizeof(int));
-    *character_count = 0;
+    //*character_count = 0;
 
     for (pointer_value = format; *pointer_value; pointer_value++)
     {
@@ -39,12 +39,10 @@ int my_printf(const char* format, ...)
                     char* integer_to_string;
                     
                     digit_count = malloc(sizeof(int));
-                    *digit_count = 0;
-
-                    integer_to_string = malloc(sizeof(char));
+                    integer_to_string = malloc(sizeof(char) * (*digit_count) + 1);
                     
-                    num_of_digits(int_value, digit_count);
-                    convert_integer_to_ascii(int_value, digit_count, integer_to_string);
+                    count_digits(*int_value, digit_count);
+                    convert_integer_to_ascii(*int_value, *digit_count, integer_to_string);
                     write(1, integer_to_string, *digit_count);
 
                     *character_count = *character_count + *digit_count;
