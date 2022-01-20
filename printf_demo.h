@@ -9,6 +9,7 @@
 #include <unistd.h>
 
 /* MACROS */
+#define HEXADECIMAL 16
 #define DECIMAL 10
 #define OCTAL   8
 
@@ -18,7 +19,8 @@ char* string_value;
 int* digit_count;
 int* char_value;
 int* signed_decimal_value;
-int* octal_value;
+int* unsigned_decimal_value;
+int* unsigned_octal_value;
 double* double_value;
 int* character_count;
 char* integer_to_string;
