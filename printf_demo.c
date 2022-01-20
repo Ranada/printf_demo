@@ -49,16 +49,18 @@ int my_printf(const char* format, ...)
                     {
                         char* null_string_value = "(null)";
                         int length = strlen(null_string_value);
-                        int result_count = convert_string(null_string_value, length, character_count);
+                        
+                        write(1, null_string_value, (length + 1));
 
-                        character_count = result_count;
+                        character_count = character_count + length;
                     }
                     else
                     {
                         int length = strlen(string_value);
-                        int result_count = convert_string(string_value, length, character_count);
-
-                        character_count = result_count;
+                        
+                        write(1, string_value, (length + 1));
+                        
+                        character_count = character_count + length;
                     }
                     break;
                 default:
