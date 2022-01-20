@@ -43,7 +43,7 @@ void count_digits(int number, int* digit_count)
 }
 
 
-void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_string)
+void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_string, int base)
 {    
     integer_to_string[digit_count] = '\0'; // Start building string by setting null terminator
     
@@ -62,9 +62,9 @@ void convert_integer_to_ascii(int int_value, int digit_count, char* integer_to_s
     {
         while (int_value > 0)
         {        
-        char digit_to_char = (int_value) % 10 + '0';
+        char digit_to_char = (int_value) % base + '0';
         
-        int_value = int_value / 10;
+        int_value = int_value / base;
 
         integer_to_string[digit_count - 1] = digit_to_char;
 
