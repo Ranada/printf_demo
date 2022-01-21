@@ -101,10 +101,4 @@ void convert_integer_to_ascii(int number, int digit_count, char* integer_to_stri
         digit_count--;
         }
     }
-
-
-    // if (*digit_count == -1)
-    //     string[0] = '-';
-
-    // return string;
 }
