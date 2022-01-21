@@ -23,7 +23,6 @@ int* pointer_argument_value;
 int* unsigned_hexadecimal_value;
 int* unsigned_decimal_value;
 int* unsigned_octal_value;
-double* double_value;
 int* character_count;
 char* integer_to_string;
 int base;

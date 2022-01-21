@@ -49,14 +49,6 @@ int my_printf(const char* format, ...)
                     *character_count = *character_count + *digit_count;
                     
                     break;
-                case 'f':
-                    *double_value = va_arg(args_pointer, double);
-                    
-                    printf("%f", *double_value);
-                    
-                    (*character_count)++;
-                    
-                    break;
                 case 'o':
                     *unsigned_octal_value = va_arg(args_pointer, int);
                     
