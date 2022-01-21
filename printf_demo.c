@@ -71,23 +71,32 @@ int my_printf(const char* format, ...)
                     *character_count = *character_count + *digit_count;
                     
                     break;
-                // case 'p':
-                //     pointer_argument_value = va_arg(args_pointer, int*);
+                case 'p':
+                    pointer_argument_value = va_arg(args_pointer, int*);
                     
-                    // digit_count = malloc(sizeof(int));
-                    // integer_to_string = malloc(sizeof(char) * (*digit_count) + 1);
-                    // base = HEXADECIMAL;
-                    
-                    // count_digits(*pointer_argument_value, digit_count);
-                    // convert_integer_to_ascii(*pointer_argument_value, *digit_count, integer_to_string, base);
-                    
-                    // write(1, pointer_argument_value, HEXADECIMAL +1);
+                    uintptr_t number = (uintptr_t)pointer_argument_value; // unitptr_t gives us 140701885900588 (decimal type number)
+                    char buf[2 + sizeof(number) * 2]; 
+                    size_t index = 0;
 
-                    // *character_count = *digit_count;
+                    // printf("x: %lu\n", number);
+                    // printf("size of x: %lu\n", sizeof(number));
+                    // printf("buf: %lu\n", sizeof(buf));
+                    // printf("i: %zu\n", index);
 
-                    // printf("%p\n", pointer_argument_value);
+
+                    buf[0] = '0';
+                    buf[1] = 'x';
                     
-                    // break;
+                    for (index = 0; index < sizeof(buf) - 2; index++) 
+                    {
+                        buf[index + 2] = "0123456789abcdef"[(number >> ((sizeof(buf) - 7 - index) * 4)) & 0xf];
+                    }
+                    
+                    write(1, buf, sizeof(buf) - 4);
+
+                    *character_count = *character_count + sizeof(buf) - 4;
+                    
+                    break;
                 case 's':
                     string_value = va_arg(args_pointer, char*);
 
