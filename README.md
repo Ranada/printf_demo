@@ -1,8 +1,9 @@
 # printf_demo
 printf_demo.c
+
 Original author: Neil Ranada
 
-The goal of this project is to replicate the `printf()` C standard library function to understand its inner workings.
+This project aims to replicate the `printf()` C standard library function to understand its inner workings.
 
 ## How to install
 
@@ -14,5 +15,5 @@ https://github.com/Ranada/printf_demo
 - Compile automatically using the makefile using `make` or manually `gcc -Wall -Wextra -Werror *.c -o run_test`
 
 ## How to test
-- Use the `test_cases.c` file included with this project or add your own c file with test functions
+- Use the `test_cases.c` file included with this project. Or add your C file with test functions and include `#include "printf_demo.h"` at the top.
 - Run the program `./run_test`
