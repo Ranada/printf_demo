@@ -75,26 +75,22 @@ int my_printf(const char* format, ...)
                     pointer_argument_value = va_arg(args_pointer, int*);
                     
                     uintptr_t number = (uintptr_t)pointer_argument_value; // unitptr_t gives us 140701885900588 (decimal type number)
-                    char buf[2 + sizeof(number) * 2]; 
-                    size_t index = 0;
+                    char buffer[2 + sizeof(number) * 2]; // Size of buffer: 18
+                    int index = 0;
+                    int size_buffer_to_fill = sizeof(buffer) - 2; // Size_buffer_to_fill: 16
 
-                    // printf("x: %lu\n", number);
-                    // printf("size of x: %lu\n", sizeof(number));
-                    // printf("buf: %lu\n", sizeof(buf));
-                    // printf("i: %zu\n", index);
-
-
-                    buf[0] = '0';
-                    buf[1] = 'x';
+                    /* Add '0' and 'x' to the first to positions in the string to indicate it is a hexadecimal value */
+                    buffer[0] = '0'; 
+                    buffer[1] = 'x';
                     
-                    for (index = 0; index < sizeof(buf) - 2; index++) 
+                    for (index = 0; index < size_buffer_to_fill; index++) 
                     {
-                        buf[index + 2] = "0123456789abcdef"[(number >> ((sizeof(buf) - 7 - index) * 4)) & 0xf];
+                        buffer[index + 2] = "0123456789abcdef"[(number >> ((size_buffer_to_fill - 5 - index) * 4)) & 0xf]; // Shift 5 digits to offset for leading zeros in original address
                     }
                     
-                    write(1, buf, sizeof(buf) - 4);
+                    write(1, buffer, sizeof(buffer) - 4);
 
-                    *character_count = *character_count + sizeof(buf) - 4;
+                    *character_count = *character_count + sizeof(buffer) - 4;
                     
                     break;
                 case 's':
