@@ -26,7 +26,7 @@ https://github.com/Ranada/printf_demo
 Note: If you receive error messages for one or more of your test cases, comment out `//` the test function(s) in question and then try to compile with `make` and run the program again `./run_test`
 
 ### Screenshot of expected command line output from using test_cases.c
-<img src="./images/printf-demo-1.png" >
+<img src="./images/printf-demo-1.png" width="75%">
 
 ## Takeaways and Lessons Learned
 I learned the printf in the C library handles numerous conversions of various data types (integer, character, string, memory address) "under the hood" before printing to the command line. Before printing, some math is required to convert from decimal to octal or hexadecimal formats.
