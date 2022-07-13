@@ -29,7 +29,7 @@ Note: If you receive error messages for one or more of your test cases, comment 
 <img src="./images/printf-demo-1.png" width="75%">
 
 ## Takeaways and Lessons Learned
-I learned the printf in the C library handles numerous conversions of various data types (integer, character, string, memory address) "under the hood" before printing to the command line. Before printing, some math is required to convert from decimal to octal or hexadecimal formats.
+I learned the printf function in the C library handles numerous conversions of various data types (integer, character, string, memory address) "under the hood" before printing to the command line. Before printing, some math is required to convert from decimal to octal or hexadecimal formats.
 
 ## Final thoughts
 After completing this C project, I find using librarian functions and methods in higher-level programming languages such as Javascript and Ruby less mysterious. I'm more comfortable looking up documentation to understand these built-in solutions.
